@@ -1852,6 +1852,7 @@ export function runFullAnalysisTS(
   );
 
   const rawPaths: { src: string; dst: string; chain: string[] }[] = [];
+  const seenChainSet = new Set<string>();
 
   for (const src of entryNodes) {
     for (const dst of targetNodes) {
@@ -1863,7 +1864,11 @@ export function runFullAnalysisTS(
         const { curr, path } = stack.pop()!;
         if (path.length > 7) continue;
         if (curr === dst.id) {
-          rawPaths.push({ src: src.id, dst: dst.id, chain: path });
+          const chainKey = path.join("->");
+          if (!seenChainSet.has(chainKey)) {
+            seenChainSet.add(chainKey);
+            rawPaths.push({ src: src.id, dst: dst.id, chain: path });
+          }
           continue;
         }
         for (const edge of adj.get(curr) ?? []) {

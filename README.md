@@ -6,6 +6,9 @@
 
 ## 1. Project Introduction
 
+**Live Application (Vercel):** [https://cloudpath-eta.vercel.app](https://cloudpath-eta.vercel.app)  
+**GitHub Repository:** [https://github.com/GorillaBrain/cloudpath](https://github.com/GorillaBrain/cloudpath)
+
 **CloudPath** is an enterprise-grade **Cloud Security Posture Management (CSPM)**, **Cloud Identity Security (CIEM)**, and **Graph-Based Attack Path Analysis** platform. It ingests declarative cloud configurations (Terraform HCL, Terraform Plan JSON, AWS IAM Policies, Role Trust Policies, and AWS Config exports) and constructs an interactive directed multigraph showing how identities, permissions, trust boundaries, and network exposures chain together to reach sensitive cloud resources.
 
 ---
@@ -45,6 +48,11 @@ Traditional flat compliance scanners list dozens of low-context alerts without s
 ---
 
 ## 4. Application Views & Screenshots
+
+![Posture Overview Dashboard](public/screenshots/02-dashboard-overview.png)
+![Interactive Attack Graph Explorer](public/screenshots/03-attack-graph-explorer.png)
+![Security Findings & Least-Privilege Diffs](public/screenshots/04-security-findings.png)
+![Attack Path Investigation Dossier](public/screenshots/06-path-investigations.png)
 
 1. **Landing Page**: Product positioning, live trace preview, architecture pipeline, and zero-credential security guarantees.
 2. **Posture Overview Dashboard**: Real-time metric cards, prioritized attack paths, interactive topology preview, Recharts severity/asset distributions, and findings table.
