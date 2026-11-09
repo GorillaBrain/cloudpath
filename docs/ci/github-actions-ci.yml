@@ -1,0 +1,42 @@
+name: CloudPath CI — Backend Pytest, Frontend Vitest & Next.js Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-tests:
+    name: Python FastAPI & NetworkX Engine Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+      - name: Run Backend Pytest Suite
+        env:
+          PYTHONPATH: .
+        run: pytest tests/backend -v
+
+  frontend-tests-and-build:
+    name: Next.js TypeScript, Vitest & Production Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+      - name: Run Frontend Vitest Suite
+        run: npm test
+      - name: Build Next.js Production Bundle
+        run: npm run build
